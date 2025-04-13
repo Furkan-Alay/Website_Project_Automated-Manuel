@@ -12,5 +12,4 @@
  3. cd into vagrant/Manual_provisioning kısmına girin
  
  -Sanal makinenizi çalıştırın
- $ vagrant up
-  a
+ * vagrant up

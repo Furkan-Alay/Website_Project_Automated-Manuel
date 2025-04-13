@@ -43,3 +43,9 @@
  * mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123';
  * mysql> FLUSH PRIVILEGES;
  * mysql> exit;
+ -Kaynak kodu indirip ve veri tabanını başlatalım.
+ * cd /tmp/
+ * git clone-b local https://github.com/Furkan-Alay/Website_Project_Automated-Manuel.git
+ * cd vprofile-project
+ * mysql-u root-padmin123 accounts < src/main/resources/db_backup.sql
+ * mysql-u root-padmin123 accounts

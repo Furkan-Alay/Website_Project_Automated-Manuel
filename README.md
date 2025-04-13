@@ -13,10 +13,18 @@
  
  -Sanal makinenizi çalıştırın
  * vagrant up
--Sanal Makinenizi çalıştırdıktan sonra provizyonlanacak olan servislerimiz bunlardır.
+ -Sanal Makinenizi çalıştırdıktan sonra provizyonlanacak olan servislerimiz bunlardır.
  1. Nginx
  2. Tomcat
  3. RabbitMQ
  4. Memcache
  5. ElasticSearch
  6. MySQL
+ 
+ ## MYSQL Kurulumu
+ - db adındaki Sanal makineye giriş yaptık.
+ * vagrant ssh db01
+ - İşletim sistemimizdeki paketleri güncelledik
+ * dnf update-y
+ - Repository oluşturduk
+ * dnf install epel-release-y

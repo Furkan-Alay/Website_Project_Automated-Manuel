@@ -45,8 +45,8 @@
  * mysql> exit;
  -Kaynak kodu indirip ve veri tabanını başlatalım.
  * cd /tmp/
- * git clone-b local https://github.com/Furkan-Alay/Website_Project_Automated-Manuel.git
- * cd vprofile-project
+ * git clone https://github.com/Furkan-Alay/Website_Project_Automated-Manuel.git
+ * cd Website_Project_Automated-Manuel
  * mysql-u root-padmin123 accounts < src/main/resources/db_backup.sql
  * mysql-u root-padmin123 accounts
  -Tablo bilgisini görebiliriz
@@ -112,4 +112,31 @@
  * Restart=always
  * [Install]
  * WantedBy=multi-user.target
--Tomcat
+-Sistem dosyasını yeniden başlatalım
+* systemctl daemon-reload
+-Tomcat servisimizi başlatalım ve açık hale getirelim.
+* systemctl start tomcat
+* systemctl enable tomcat
+##Artık uygulamamızı Build ve Deploy işleminden geçirebiliriz.
+-Maven kuralım
+ * cd /tmp/
+ * wget
+ * https://archive.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip
+ * unzip apache-maven-3.9.9-bin.zip
+ * cp-r apache-maven-3.9.9 /usr/local/maven3.9
+ * export MAVEN_OPTS="-Xmx512m"
+-Kaynak kodu indirelim
+* git clone https://github.com/Furkan-Alay/Website_Project_Automated-Manuel.git
+-Konfigürasyon güncellemesi yapalım
+ * cd Website_Project_Automated-Manuel
+ * vim src/main/resources/application.properties
+-Kodumuzu build edelim(Website_Project_Automated-Manuel bu dizinde olmalıyız)
+* /usr/local/maven3.9/bin/mvn install
+-Artifact Deploy edelim
+ * systemctl stop tomcat
+ * rm-rf /usr/local/tomcat/webapps/ROOT*
+ * cp target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+ * systemctl start tomcat
+ * chown tomcat.tomcat /usr/local/tomcat/webapps-R
+ * systemctl restart tomcat
+ 

@@ -13,3 +13,10 @@
  
  -Sanal makinenizi çalıştırın
  * vagrant up
+-Sanal Makinenizi çalıştırdıktan sonra provizyonlanacak olan servislerimiz bunlardır.
+ 1. Nginx
+ 2. Tomcat
+ 3. RabbitMQ
+ 4. Memcache
+ 5. ElasticSearch
+ 6. MySQL

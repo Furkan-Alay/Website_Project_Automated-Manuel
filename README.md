@@ -164,5 +164,5 @@
  -Websitemize giriş yapmak için kısayol oluşturalım.
  * ln-s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
  -NGINX Yeniden çalıştırdık
- *systemctl restartnginx
+ * systemctl restartnginx
 ###TÜM kurulumlar bittiğine göre app vm içerisindeki Statik IP bilgisini kullanarak Websitemize erişebiliriz.

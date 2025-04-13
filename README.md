@@ -3,4 +3,5 @@
 *  Oracle VM Virtualbox
 * Vagrant
 * Vagrant eklentileri
-- Bunları yükledikten sonra şu komutu çalıştırın
+- Vagrant eklentisini yüklemek için şu komutu çalıştırabilirsiniz.
+* vagrant plugin install vagrant-hostmanager

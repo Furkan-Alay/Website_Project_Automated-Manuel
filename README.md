@@ -166,5 +166,5 @@
  -NGINX Yeniden çalıştırdık
  * systemctl restartnginx
 ###TÜM kurulumlar bittiğine göre app vm içerisindeki Statik IP bilgisini kullanarak Websitemize erişebiliriz.
-                                                                                      #Otomatik Kurulum
+                                                                                           # Otomatik Kurulum
 - 

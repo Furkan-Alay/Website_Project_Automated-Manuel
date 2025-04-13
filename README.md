@@ -96,20 +96,20 @@
 -Tomcat kullanıcısı için service dosyasını oluşturalım ve aşağıdaki bilgileri bu dosyaya aktaralım
  * vi /etc/systemd/system/tomcat.service
  * [Unit]
- Description=Tomcat
- After=network.target
- [Service]
- User=tomcat
- Group=tomcat
- WorkingDirectory=/usr/local/tomcat
- Environment=JAVA_HOME=/usr/lib/jvm/jre
- Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
- Environment=CATALINA_HOME=/usr/local/tomcat
- Environment=CATALINE_BASE=/usr/local/tomcat
- ExecStart=/usr/local/tomcat/bin/catalina.sh run
- ExecStop=/usr/local/tomcat/bin/shutdown.sh
- RestartSec=10
- Restart=always
- [Install]
- WantedBy=multi-user.target
+ * Description=Tomcat
+ * After=network.target
+ * [Service]
+ * User=tomcat
+ * Group=tomcat
+ * WorkingDirectory=/usr/local/tomcat
+ * Environment=JAVA_HOME=/usr/lib/jvm/jre
+ * Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
+ * Environment=CATALINA_HOME=/usr/local/tomcat
+ * Environment=CATALINE_BASE=/usr/local/tomcat
+ * ExecStart=/usr/local/tomcat/bin/catalina.sh run
+ * ExecStop=/usr/local/tomcat/bin/shutdown.sh
+ * RestartSec=10
+ * Restart=always
+ * [Install]
+ * WantedBy=multi-user.target
 -Tomcat

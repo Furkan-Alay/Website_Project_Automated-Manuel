@@ -168,4 +168,6 @@
 ###TÜM kurulumlar bittiğine göre app vm içerisindeki Statik IP bilgisini kullanarak Websitemize erişebiliriz.
 
 # Otomatik Kurulum
-- 
+* Otomasyon için oluşturduğum 2.klasöre girmelisiniz.
+* Vagrantfile dosyamın olduğu yere gelmelisiniz.
+* Vagrantfile dosyasını vagrant up komutuyla çalıştırmanız yeterli olacaktır.

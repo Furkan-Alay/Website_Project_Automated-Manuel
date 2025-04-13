@@ -10,6 +10,7 @@
  1. Kaynak kodu klon edin
  2. Repo içerisine girin
  3. cd into vagrant/Manual_provisioning kısmına girin
- Sanal makinenizi çalıştırın
+ 
+ -Sanal makinenizi çalıştırın
  $ vagrant up
   a

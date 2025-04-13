@@ -28,3 +28,18 @@
  * dnf update-y
  - Repository oluşturduk
  * dnf install epel-release-y
+ - MariaDB paketini kurduk
+ * dnf install git mariadb-server-y
+ - mariadb servisimizi açık ve çalışır halde bıraktık.
+ * systemctl start mariadb
+ * systemctl enable mariadb
+ -Root kullanıcısı için bir şifre oluşturmalıyız.
+ * mysqladmin -u root password 'NEWPASSWORD'
+ -Database root kullanıcısı oluşturalım
+ * mysql-u root-padmin123
+ -Gerekli yetkileri bu kullanıcıya verelim
+ * mysql> create database accounts;
+ * mysql> grant all privileges on accounts.* TO 'admin'@'localhost' identified by 'admin123';
+ * mysql> grant all privileges on accounts.* TO 'admin'@'%' identified by 'admin123';
+ * mysql> FLUSH PRIVILEGES;
+ * mysql> exit;

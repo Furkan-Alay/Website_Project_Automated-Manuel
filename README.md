@@ -49,3 +49,67 @@
  * cd vprofile-project
  * mysql-u root-padmin123 accounts < src/main/resources/db_backup.sql
  * mysql-u root-padmin123 accounts
+ -Tablo bilgisini görebiliriz
+ * mysql> show tables;
+ * mysql> exit;
+ -Mariadb servisimizi yeniden çalıştıralım.
+ * systemctl restart mariadb
+ ## RabbitMQ Kurulumu
+ -RabbitMQ içerisine girdik
+ * vagrant ssh rmq01
+ -Son güncellemeleri bu komutla alalım
+ * dnf update-y
+ -Epel Reposunu kuralım
+ * dnf install epel-release-y
+ -Gereklilikleri indirelim
+ * sudo dnf install wget-y
+ * dnf-y install centos-release-rabbitmq-38
+ * dnf--enablerepo=centos-rabbitmq-38-y install rabbitmq-server
+ * systemctl enable--now rabbitmq-server
+ -Kullanıcı oluşturalım,test edelim ve admin yetkisi verelim.
+ * sudo sh-c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
+ * sudo rabbitmqctl add_user test test
+ * sudo rabbitmqctl set_user_tags test administrator
+ * rabbitmqctl set_permissions-p / test ".*" ".*" ".*"
+ * sudo systemctl restart rabbitmq-server
+ ##Tomcat Kurulumu
+ -Tomcat Sanal Makineye girdik
+ * vagrant ssh app01
+ -Son güncellemeleri aldık
+ * dnf update-y
+ -Epel Reposunu kuralım
+ * dnf install epel-release-y
+ -Gereklilikleri kuralım
+ * dnf-y install java-17-openjdk java-17-openjdk-devel
+ * dnf install git wget-y
+ -/tmp/ içerisine girdik
+ * cd /tmp/
+ -Tomcat indirdik ve sıkıştırdık.
+ * wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.1.26/bin/apache-tomcat-10.1.26.tar.gz
+ * tar xzvf apache-tomcat-10.1.26.tar.gz
+ -Tomcat kullanıcısnı oluşturduk
+ * useradd--home-dir /usr/local/tomcat--shell /sbin/nologin tomcat
+-Tomcat home klasörü içerisine verileri aktardık.
+ * cp-r /tmp/apache-tomcat-10.1.26/* /usr/local/tomcat/
+-Tomcat home klasörünün sahibini tomcat kullanıcısı yaptık.
+ * chown-R tomcat.tomcat /usr/local/tomcat
+-Tomcat kullanıcısı için service dosyasını oluşturalım ve aşağıdaki bilgileri bu dosyaya aktaralım
+ * vi /etc/systemd/system/tomcat.service
+ * [Unit]
+ Description=Tomcat
+ After=network.target
+ [Service]
+ User=tomcat
+ Group=tomcat
+ WorkingDirectory=/usr/local/tomcat
+ Environment=JAVA_HOME=/usr/lib/jvm/jre
+ Environment=CATALINA_PID=/var/tomcat/%i/run/tomcat.pid
+ Environment=CATALINA_HOME=/usr/local/tomcat
+ Environment=CATALINE_BASE=/usr/local/tomcat
+ ExecStart=/usr/local/tomcat/bin/catalina.sh run
+ ExecStop=/usr/local/tomcat/bin/shutdown.sh
+ RestartSec=10
+ Restart=always
+ [Install]
+ WantedBy=multi-user.target
+-Tom

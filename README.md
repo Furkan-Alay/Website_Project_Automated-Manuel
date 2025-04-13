@@ -139,4 +139,30 @@
  * systemctl start tomcat
  * chown tomcat.tomcat /usr/local/tomcat/webapps-R
  * systemctl restart tomcat
- 
+ ##Son olarak NGINX Kurulumu yapalım
+ -NGINX VM açtık ve root kullanıcısına geçtik
+ * vagrant ssh web01
+ * sudo-i
+ -Son güncellemeleri aldık
+ * apt update
+ * apt upgrade
+ -NGINX İndirdik
+ * apt install nginx-y
+ -NGINX konfigürasyon dosyası oluşturalım ve içerisinde bunları yazalım
+ * vi /etc/nginx/sites-available/vproapp
+ * upstream vproapp {
+ * server app01:8080;
+ * }
+ * server {
+ * listen 80;
+ * location / {
+ * proxy_pass http://vproapp;
+ * }
+ * }
+ -Default olan NGINX Konfigürasyon dosyasını silelim
+ * rm-rf /etc/nginx/sites-enabled/default
+ -Websitemize giriş yapmak için kısayol oluşturalım.
+ * ln-s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+ -NGINX Yeniden çalıştırdık
+ *systemctl restartnginx
+###TÜM kurulumlar bittiğine göre app vm içerisindeki Statik IP bilgisini kullanarak Websitemize erişebiliriz.
